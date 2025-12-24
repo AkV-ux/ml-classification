@@ -1,6 +1,8 @@
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.metrics import accuracy_score
+from sklearn.metrics import confusion_matrix
+
 
 # Training data
 texts = [
@@ -41,3 +43,7 @@ predictions = model.predict(X_test)
 # Accuracy
 accuracy = accuracy_score(true_labels, predictions)
 print("Accuracy:", accuracy)
+cm = confusion_matrix(true_labels, predictions)
+print("Confusion Matrix:")
+print(cm)
+
