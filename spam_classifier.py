@@ -1,5 +1,6 @@
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.naive_bayes import MultinomialNB
+from sklearn.metrics import accuracy_score
 
 # Training data
 texts = [
@@ -14,18 +15,29 @@ texts = [
 # Labels: 1 = spam, 0 = not spam
 labels = [1, 1, 0, 0, 1, 0]
 
+# Test data
+test_texts = [
+    "Win cash prize now",
+    "Are you coming to college today",
+    "Free offer just for you",
+    "Please send the assignment"
+]
+
+# True labels
+true_labels = [1, 0, 1, 0]
+
 # Convert text to numbers
 vectorizer = CountVectorizer()
-X = vectorizer.fit_transform(texts)
+X_train = vectorizer.fit_transform(texts)
+X_test = vectorizer.transform(test_texts)
 
 # Train model
 model = MultinomialNB()
-model.fit(X, labels)
+model.fit(X_train, labels)
 
-# Test message
-test_message = ["Win a free phone now"]
-test_vector = vectorizer.transform(test_message)
+# Predictions
+predictions = model.predict(X_test)
 
-prediction = model.predict(test_vector)
-
-print("Spam" if prediction[0] == 1 else "Not Spam")
+# Accuracy
+accuracy = accuracy_score(true_labels, predictions)
+print("Accuracy:", accuracy)
