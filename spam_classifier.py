@@ -58,12 +58,17 @@ model.fit(X_train, labels)
 predictions = model.predict(X_test)
 
 # Accuracy
+# Evaluate model performance
+# Accuracy shows overall correctness
 accuracy = accuracy_score(true_labels, predictions)
 print("Accuracy:", accuracy)
+# Confusion matrix shows where the model is right or wrong
 cm = confusion_matrix(true_labels, predictions)
 print("Confusion Matrix:")
 print(cm)
 
+# Precision: how reliable spam predictions are
+# Recall: how much spam the model catches 
 precision = precision_score(true_labels, predictions)
 recall = recall_score(true_labels, predictions)
 
