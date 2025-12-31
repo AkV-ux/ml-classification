@@ -1,4 +1,4 @@
-from sklearn.feature_extraction.text import CountVectorizer
+from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.metrics import accuracy_score
 from sklearn.metrics import confusion_matrix
@@ -46,7 +46,7 @@ true_labels = [0, 0, 1, 0]
 
 
 # Convert text to numbers
-vectorizer = CountVectorizer()
+vectorizer = TfidfVectorizer()
 X_train = vectorizer.fit_transform(texts)
 X_test = vectorizer.transform(test_texts)
 
